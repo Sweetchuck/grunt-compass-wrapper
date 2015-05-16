@@ -1,0 +1,46 @@
+{
+  "name": "grunt-compass-wrapper",
+  "description": "Wrapper around the `compass` CLI tool.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Andor Dávid",
+    "url": "https://github.com/Sweetchuck"
+  },
+  "repository": "Sweetchuck/grunt-compass-wrapper",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "bin-version-check": "^2.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-internal": "^0.4.10",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-eslint": "^12.0.0",
+    "grunt-shell": "^1.1.2"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  },
+  "keywords": [
+    "grunt",
+    "plugin",
+    "compass",
+    "compile",
+    "scss",
+    "sass",
+    "css",
+    "preprocessor",
+    "style"
+  ],
+  "files": [
+    "tasks"
+  ]
+}
