@@ -1,7 +1,7 @@
 {
   "name": "grunt-compass-wrapper",
   "description": "Wrapper around the `compass` CLI tool.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Andor Dávid",
     "url": "https://github.com/Sweetchuck"
