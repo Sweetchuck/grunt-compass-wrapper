@@ -6,17 +6,27 @@
 'use strict';
 
 module.exports = function (grunt) {
+
   var compass = require('./lib/compass').init(grunt);
 
   grunt.registerMultiTask('compass-clean', 'Run `compass clean ...` command', function () {
-    compass.run(this, 'clean');
+    var options = this.options(compass.defaultOptions.clean);
+
+    compass.configValidate(options);
+    compass.execClean(options, this.files);
   });
 
   grunt.registerMultiTask('compass-compile', 'Run `compass compile ...` command', function () {
-    compass.run(this, 'compile');
+    var options = this.options(compass.defaultOptions.compile);
+
+    compass.configValidate(options);
+    compass.execCompile(options, this.files);
   });
 
   grunt.registerMultiTask('compass-validate', 'Run `compass validate ...` command', function () {
-    compass.run(this, 'validate');
+    var options = this.options(compass.defaultOptions.validate);
+
+    compass.configValidate(options);
+    compass.execValidate(options, this.files);
   });
 };

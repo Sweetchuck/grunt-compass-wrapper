@@ -103,12 +103,15 @@
 exports.init = function (grunt) {
   'use strict';
 
-  var deepExtend = require('deep-extend');
   var binVersionCheck = require('bin-version-check');
+  var S = require('string');
+  var path = require('path');
 
-  var minimumCompassVersion = '0.12.2';
+  var exports = {};
 
-  var argumentsSchema = {
+  exports.minimumCompassVersion = '0.12.2';
+
+  exports.argumentsSchema = {
     clean: {},
     compile: {
       sourceMap: {type: 'tri-state', cliName: 'sourcemap'},
@@ -117,7 +120,7 @@ exports.init = function (grunt) {
     validate: {}
   };
 
-  var defaultOptions = {
+  exports.defaultOptions = {
     clean: {
       arguments: {},
       rubyExecutable: null,
@@ -141,7 +144,7 @@ exports.init = function (grunt) {
     }
   };
 
-  var defaultConfig = {
+  exports.defaultConfig = {
     clean: {
       options: {},
       cwd: '.'
@@ -156,57 +159,30 @@ exports.init = function (grunt) {
     }
   };
 
-  /**
-   * @param {String} string
-   *
-   * @return {String}
-   */
-  function camelCaseToLowerHyphenCase(string) {
-    return string
-      .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-      .toLowerCase();
-  }
+  exports.msgPattern = {
+    noMatch: S('There is no match to the following patterns: {{patterns}}')
+  };
 
   /**
    * @param {String} string
    *
    * @return {String}
    */
-  function escapeShellArgument(string) {
+  exports.escapeShellArgument = function (string) {
     // @todo Escape shell argument.
     return !string ? "''" : string;
-  }
+  };
 
   /**
-   * @param {CompassDefaultConfig} config
-   * @param {Object} command
+   * @param {CompassDefaultOptions} options
    */
-  function commandRubyAndBundle(config, command) {
-    if (config.options.bundleExecutable && config.options.bundleExec) {
-      command.args.unshift(command.cmd);
-      command.args.unshift('exec');
-      command.cmd = config.options.bundleExecutable;
-    }
-
-    if (config.options.rubyExecutable) {
-      command.args.unshift(command.cmd);
-      command.cmd = config.options.rubyExecutable;
-    }
-  }
-
-  /**
-   * @param {CompassDefaultConfig} config
-   * @param {string} action
-   */
-  function configValidate(config, action) {
-    binVersionCheck(config.options.compassExecutable, '>=' + minimumCompassVersion, function (error) {
+  exports.configValidate = function (options) {
+    binVersionCheck(options.compassExecutable, '>=' + exports.minimumCompassVersion, function (error) {
       if (error) {
         grunt.warn(error);
       }
     });
-  }
-
-  var exports = {};
+  };
 
   /**
    * @param {Object} items
@@ -261,7 +237,7 @@ exports.init = function (grunt) {
         }
 
         s = schema.hasOwnProperty(name) ? schema[name] : {type: typeof args[name]};
-        s.cliName = s.cliName || camelCaseToLowerHyphenCase(name);
+        s.cliName = s.cliName || S(name).dasherize().s;
         if (s.type === 'object' && Array.isArray(args[name])) {
           s.type = 'array';
         }
@@ -284,13 +260,13 @@ exports.init = function (grunt) {
 
           case 'string':
             cliArgs.push('--' + s.cliName);
-            cliArgs.push(escapeShellArgument(args[name]));
+            cliArgs.push(exports.escapeShellArgument(args[name]));
             break;
 
           case 'array':
             for (i = 0; i < args[name].length; i++) {
               cliArgs.push('--' + s.cliName);
-              cliArgs.push(escapeShellArgument(args[name][i]));
+              cliArgs.push(exports.escapeShellArgument(args[name][i]));
             }
             break;
 
@@ -298,7 +274,7 @@ exports.init = function (grunt) {
             filtered = exports.filterEnabled(args[name]);
             for (i = 0; i < filtered.length; i++) {
               cliArgs.push('--' + s.cliName);
-              cliArgs.push(escapeShellArgument(filtered[i]));
+              cliArgs.push(exports.escapeShellArgument(filtered[i]));
             }
             break;
         }
@@ -308,32 +284,112 @@ exports.init = function (grunt) {
     return cliArgs;
   };
 
-  exports.run = function (self, action) {
-    /**
-     * @type CompassDefaultConfig
-     */
-    var config = deepExtend({}, defaultConfig[action], self.data);
+  /**
+   * @param {Array} fileDefinitions
+   *
+   * @return {String[]}
+   */
+  exports.workingDirectories = function (fileDefinitions) {
+    var directories = [];
+    var directory;
 
-    config.options = deepExtend(
-      {},
-      self.options(defaultOptions[action]),
-      config.options
-    );
+    fileDefinitions.forEach(function (fileDefinition) {
+      if (fileDefinition.src.length === 0) {
+        grunt.log.warn(
+          exports.msgPattern
+            .noMatch
+            .template({patterns: fileDefinition.orig.src.join(', ')})
+            .s
+            .yellow
+        );
 
-    configValidate(config, action);
+        return;
+      }
 
+      fileDefinition.src.forEach(function (fileName) {
+        directory = path.dirname(fileName) || '.';
+        if (directories.indexOf(directory) === -1) {
+          directories.push(directory);
+        }
+      });
+    });
+
+    return directories;
+  };
+
+  /**
+   * @param {String} action
+   * @param {CompassDefaultOptions} options
+   *
+   * @return {Object}
+   */
+  exports.createCommand = function (action, options) {
     var command = {
-      cmd: config.options.compassExecutable,
-      args: exports.buildArguments(config.options.arguments, argumentsSchema[action]),
+      cmd: options.compassExecutable,
+      args: [],
       opts: {
-        cwd: config.cwd
+        cwd: null
       }
     };
 
-    command.args.unshift(action);
+    if (options.bundleExecutable && options.bundleExec) {
+      command.args.unshift(command.cmd);
+      command.args.unshift('exec');
+      command.cmd = options.bundleExecutable;
+    }
 
-    commandRubyAndBundle(config, command);
+    if (options.rubyExecutable) {
+      command.args.unshift(command.cmd);
+      command.cmd = options.rubyExecutable;
+    }
 
+    command.args.push(action);
+    command.args.concat(exports.buildArguments(options.arguments, exports.argumentsSchema[action]));
+
+    return command;
+  };
+
+  /**
+   * @param {CompassCleanOptions} options
+   * @param {Array} fileDefinitions
+   */
+  exports.execClean = function (options, fileDefinitions) {
+    exports.exec('clean', options, fileDefinitions);
+  };
+
+  /**
+   * @param {CompassCompileOptions} options
+   * @param {Array} fileDefinitions
+   */
+  exports.execCompile = function (options, fileDefinitions) {
+    exports.exec('compile', options, fileDefinitions);
+  };
+
+  /**
+   * @param {CompassValidateOptions} options
+   * @param {Array} fileDefinitions
+   */
+  exports.execValidate = function (options, fileDefinitions) {
+    exports.exec('validate', options, fileDefinitions);
+  };
+
+  /**
+   * @param {String} action
+   * @param {CompassCleanOptions} options
+   * @param {Array} fileDefinitions
+   */
+  exports.exec = function (action, options, fileDefinitions) {
+    var directories = exports.workingDirectories(fileDefinitions);
+    var command = exports.createCommand(action, options);
+
+    directories.forEach(function (directory) {
+      command.opts.cwd = directory;
+      exports.run(command);
+    });
+  };
+
+  exports.run = function (command) {
+    // @todo Use msgPatterns.
     grunt.log.writeln('Current working directory is: ' + command.opts.cwd.blue);
     grunt.log.writeln('Execute: ' + [command.cmd].concat(command.args).join(' ').blue);
 
