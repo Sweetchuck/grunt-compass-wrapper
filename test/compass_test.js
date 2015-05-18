@@ -52,5 +52,91 @@ exports.compass = {
     test.deepEqual(cliArgsActual, cliArgsExpected, 'compass.buildArguments works as expected.');
 
     test.done();
+  },
+
+  createCommand: function (test) {
+    var action = 'clean';
+
+    var options = {
+      arguments: {},
+      rubyExecutable: null,
+      bundleExecutable: 'bundle',
+      bundleExec: true,
+      compassExecutable: 'compass'
+    };
+    var commandExpected = {
+      cmd: 'bundle',
+      args: ['exec', 'compass', 'clean'],
+      opts: {
+        cwd: null
+      }
+    };
+    test.deepEqual(
+      compass.createCommand(action, options),
+      commandExpected,
+      'compass.createCommand works as expected.'
+    );
+
+    options = {
+      arguments: {},
+      rubyExecutable: null,
+      bundleExecutable: 'bundle',
+      bundleExec: false,
+      compassExecutable: 'compass'
+    };
+    commandExpected = {
+      cmd: 'compass',
+      args: ['clean'],
+      opts: {
+        cwd: null
+      }
+    };
+    test.deepEqual(
+      compass.createCommand(action, options),
+      commandExpected,
+      'compass.createCommand works as expected.'
+    );
+
+    options = {
+      arguments: {},
+      rubyExecutable: '/usr/bin/ruby',
+      bundleExecutable: '/usr/bin/bundle',
+      bundleExec: true,
+      compassExecutable: '/usr/bin/compass'
+    };
+    commandExpected = {
+      cmd: '/usr/bin/ruby',
+      args: ['/usr/bin/bundle', 'exec', '/usr/bin/compass', 'clean'],
+      opts: {
+        cwd: null
+      }
+    };
+    test.deepEqual(
+      compass.createCommand(action, options),
+      commandExpected,
+      'compass.createCommand works as expected.'
+    );
+
+    options = {
+      arguments: {},
+      rubyExecutable: '/usr/bin/ruby',
+      bundleExecutable: '/usr/bin/bundle',
+      bundleExec: false,
+      compassExecutable: '/usr/bin/compass'
+    };
+    commandExpected = {
+      cmd: '/usr/bin/ruby',
+      args: ['/usr/bin/compass', 'clean'],
+      opts: {
+        cwd: null
+      }
+    };
+    test.deepEqual(
+      compass.createCommand(action, options),
+      commandExpected,
+      'compass.createCommand works as expected.'
+    );
+
+    test.done();
   }
 };
