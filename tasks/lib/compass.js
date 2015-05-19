@@ -160,7 +160,9 @@ exports.init = function (grunt) {
   };
 
   exports.msgPattern = {
-    noMatch: S('There is no match to the following patterns: {{patterns}}')
+    noMatch: S('There is no match to the following patterns: {{patterns}}'),
+    currentDirectory: S('Current working directory is: {{cwd}}'),
+    command: S('Execute: {{cmd}}')
   };
 
   /**
@@ -176,7 +178,7 @@ exports.init = function (grunt) {
   /**
    * @param {CompassDefaultOptions} options
    */
-  exports.configValidate = function (options) {
+  exports.validateOptions = function (options) {
     binVersionCheck(options.compassExecutable, '>=' + exports.minimumCompassVersion, function (error) {
       if (error) {
         grunt.warn(error);
@@ -381,18 +383,24 @@ exports.init = function (grunt) {
   exports.exec = function (action, options, fileDefinitions) {
     var directories = exports.workingDirectories(fileDefinitions);
     var command = exports.createCommand(action, options);
+    var i;
 
-    directories.forEach(function (directory) {
-      command.opts.cwd = directory;
+    for (i = 0; i < directories.length; i++) {
+      command.opts.cwd = directories[i];
+
+      grunt.log.writeln(exports.msgPattern.currentDirectory.template({
+        cwd: command.opts.cwd.blue
+      }).s);
+
+      grunt.log.writeln(exports.msgPattern.command.template({
+        cmd: [command.cmd].concat(command.args).join(' ').blue
+      }).s);
+
       exports.run(command);
-    });
+    }
   };
 
   exports.run = function (command) {
-    // @todo Use msgPatterns.
-    grunt.log.writeln('Current working directory is: ' + command.opts.cwd.blue);
-    grunt.log.writeln('Execute: ' + [command.cmd].concat(command.args).join(' ').blue);
-
     var done = grunt.task.current.async();
     var myProcess = grunt.util.spawn(
       command,
