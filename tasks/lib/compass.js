@@ -98,6 +98,7 @@
 
 /**
  * @param grunt
+ *
  * @return {{}}
  */
 exports.init = function (grunt) {
@@ -118,6 +119,21 @@ exports.init = function (grunt) {
       debugInfo: {type: 'tri-state'}
     },
     validate: {}
+  };
+
+  exports.flagsSchema = {
+    quiet: {argument: 'quiet', value: true},
+    trace: {argument: 'trace', value: true},
+    force: {argument: 'force', value: true},
+    boring: {argument: 'boring', value: true},
+    development: {argument: 'environment', value: 'development'},
+    production: {argument: 'environment', value: 'production'},
+    nested: {argument: 'outputStyle', value: 'nested'},
+    expanded: {argument: 'outputStyle', value: 'expanded'},
+    compact: {argument: 'outputStyle', value: 'compact'},
+    compressed: {argument: 'outputStyle', value: 'compressed'},
+    'relative-assets': {argument: 'relativeAssets', value: true},
+    'no-line-comments': {argument: 'noLineComments', value: true}
   };
 
   exports.defaultOptions = {
@@ -173,6 +189,19 @@ exports.init = function (grunt) {
   exports.escapeShellArgument = function (string) {
     // @todo Escape shell argument.
     return !string ? "''" : string;
+  };
+
+  exports.overrideOptionsByFlags = function (options, flags, flagsSchema) {
+    if (typeof flagsSchema === 'undefined') {
+      flagsSchema = exports.flagsSchema;
+    }
+
+    var flagName;
+    for (flagName in flagsSchema) {
+      if (flagsSchema.hasOwnProperty(flagName) && flags.hasOwnProperty(flagName)) {
+        options['arguments'][flagsSchema[flagName].argument] = flagsSchema[flagName].value;
+      }
+    }
   };
 
   /**
@@ -346,7 +375,7 @@ exports.init = function (grunt) {
     }
 
     command.args.push(action);
-    command.args.concat(exports.buildArguments(options.arguments, exports.argumentsSchema[action]));
+    command.args = command.args.concat(exports.buildArguments(options.arguments, exports.argumentsSchema[action]));
 
     return command;
   };
