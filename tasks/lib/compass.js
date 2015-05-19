@@ -202,6 +202,8 @@ exports.init = function (grunt) {
         options['arguments'][flagsSchema[flagName].argument] = flagsSchema[flagName].value;
       }
     }
+
+    return exports;
   };
 
   /**
@@ -213,6 +215,8 @@ exports.init = function (grunt) {
         grunt.warn(error);
       }
     });
+
+    return exports;
   };
 
   /**
