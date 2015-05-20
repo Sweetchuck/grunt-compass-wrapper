@@ -1,8 +1,6 @@
 /**
  * @file
  * Grunt plugin - Wrapper around the `compass` CLI tool.
- *
- * @todo Support the this.flags.
  */
 
 'use strict';
