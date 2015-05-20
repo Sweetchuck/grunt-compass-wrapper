@@ -1,4 +1,4 @@
-# grunt-compass-wrapper v0.0.1 [![Build Status: Linux](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper.svg?branch=master)](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper)
+# grunt-compass-wrapper v0.0.3 [![Build Status: Linux](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper.svg?branch=master)](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper)
 
 > Wrapper around the `compass` CLI tool.
 
@@ -28,6 +28,48 @@ grunt.loadNpmTasks('grunt-compass-wrapper');
 _Run this task with the `grunt compass-clean` command._
 
 
+
+### Options
+
+The options are the same as in the command line. Only difference is that in this
+Grunt plugin the format of the option names is camel case.
+
+CLI version: `sass-dir`
+
+Grunt option: `sassDir`
+
+
+#### require
+
+Type: `Object`  
+Default: `{}`
+  
+Require the given ruby LIBRARY before running commands. This is used to access 
+compass plugins without having a project configuration file.
+
+```javascript
+grunt.initConfig({
+  'compass-clean': {
+    options: {
+      arguments: {
+        require: {
+          'path/to/lib1': true,
+          'path/to/lib2': true
+        }
+      }
+    },
+    myTarget01: {
+      options: {
+        arguments: {
+          require: {
+            'path/to/lib1': false
+          }
+        }
+      }
+    }
+  }
+});
+```
 
 
 ### Examples
@@ -79,4 +121,4 @@ _(Nothing yet)_
 
 Task submitted by []()
 
-*This file was generated on Sat May 16 2015 20:24:26.*
+*This file was generated on Thu May 21 2015 00:34:38.*
