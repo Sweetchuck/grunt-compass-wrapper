@@ -191,6 +191,13 @@ exports.init = function (grunt) {
     return !string ? "''" : string;
   };
 
+  /**
+   * @param {CompassDefaultOptions} options
+   * @param {Object} flags
+   * @param {Object} flagsSchema
+   *
+   * @return {{}}
+   */
   exports.overrideOptionsByFlags = function (options, flags, flagsSchema) {
     if (typeof flagsSchema === 'undefined') {
       flagsSchema = exports.flagsSchema;
