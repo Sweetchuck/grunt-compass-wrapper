@@ -349,7 +349,13 @@ exports.init = function (grunt) {
       }
 
       fileDefinition.src.forEach(function (fileName) {
-        directory = path.dirname(fileName) || '.';
+        if (grunt.file.isDir(fileName)) {
+          directory = fileName;
+        }
+        else {
+          directory = path.dirname(fileName) || '.';
+        }
+
         if (directories.indexOf(directory) === -1) {
           directories.push(directory);
         }
