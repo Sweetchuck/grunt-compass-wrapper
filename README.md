@@ -1,68 +1,179 @@
-# grunt-compass-wrapper v0.0.3 [![Build Status: Linux](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper.svg?branch=master)](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper)
-
-> Wrapper around the `compass` CLI tool.
+# grunt-compass-wrapper  [![Build Status](Sweetchuck/grunt-compass-wrapper.svg)](Sweetchuck/grunt-compass-wrapper) 
 
 
-_Note that this is not an official Grunt plugin release! If you want to use this in a project, please be sure to follow the instructions for installing development versions, as outlined in the [Installing Grunt](http://gruntjs.com/installing-grunt) guide._
+
+<!-- toc -->
+
+* [Install](#install)
+* [Tasks](#tasks)
+  * [compass-clean](#compass-clean)
+  * [compass-compile](#compass-compile)
+  * [compass-validate](#compass-validate)
+* [Options](#options)
+* [Arguments](#arguments)
+* [Examples](#examples)
+* [Author](#author)
+* [Release History](#release-history)
+* [License](#license)
+
+<!-- toc stop -->
 
 
-## Getting Started
-This plugin requires Grunt `>=0.4.0`
+## Install
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+#### Install with [npm](npmjs.org)
 
-```shell
-npm install grunt-compass-wrapper --save-dev
+```bash
+npm i grunt-compass-wrapper --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+## Tasks
 
-```js
-grunt.loadNpmTasks('grunt-compass-wrapper');
-```
+### compass-clean
+
+Wrapper around the `$ compass clean` command.
+
+Remove generated files and the sass cache.
+
+**Supported arguments**
+
+* require
+* load
+* loadAll
+* importPath
+* quiet
+* trace
+* boring
+* config
+* app
+* appDir
+* sassDir
+* cssDir
+* imagesDir
+* javascriptDir
+* fontsDir
+* environment
+* outputStyle
+* relativeAssets
+* noLineComments
+* httpPath
+* generatedImagesPath
 
 
+### compass-compile
+
+Wrapper around the `$ compass compile` command.
+
+Compile Sass stylesheets to CSS.
+
+**Supported arguments**
+
+* sourceMap
+* debugInfo
+* require
+* load
+* loadAll
+* importPath
+* quiet
+* trace
+* boring
+* config
+* app
+* appDir
+* sassDir
+* cssDir
+* imagesDir
+* javascriptDir
+* fontsDir
+* environment
+* outputStyle
+* relativeAssets
+* noLineComments
+* httpPath
+* generatedImagesPath
+
+### compass-validate
+
+Wrapper around the `$ compass validate` command.
+
+Validate your generated css.
+
+**Supported arguments**
+
+* require
+* load
+* loadAll
+* importPath
+* quiet
+* trace
+* boring
+* config
+* app
+* appDir
+* sassDir
+* cssDir
+* imagesDir
+* javascriptDir
+* fontsDir
+* environment
+* outputStyle
+* relativeAssets
+* noLineComments
+* httpPath
+* generatedImagesPath
+
+## Options
+
+#### rubyExecutable
+Type: `String`
+Default value: `''`
+
+#### bundleExecutable
+Type: `String`
+Default value: `'bundle'`
+
+#### bundleExec
+Type: `Boolean`
+Default value: `true`
+
+#### compassExecutable
+Type: `String`
+Default value: `'compass'`
+
+#### arguments
+Type: `Object`
+Default value: `{}`
 
 
-## Compass-clean task
-_Run this task with the `grunt compass-clean` command._
+## Arguments
 
-
-
-### Options
-
-The options are the same as in the command line. Only difference is that in this
-Grunt plugin the format of the option names is camel case.
-
-CLI version: `sass-dir`
-
-Grunt option: `sassDir`
-
+All argument is same as the CLI counterpart.
+You can check them with the `$ compass {clean|compile|validate} --help` command.
 
 #### require
+Type: `Object`
+Default value: `{}`
 
-Type: `Object`  
-Default: `{}`
-  
-Require the given ruby LIBRARY before running commands. This is used to access 
-compass plugins without having a project configuration file.
+Key-value pairs where the key is the desired library and the value is `false` or
+`true`.
 
 ```javascript
 grunt.initConfig({
-  'compass-clean': {
+  'compass-compile': {
     options: {
       arguments: {
         require: {
-          'path/to/lib1': true,
-          'path/to/lib2': true
+          'path/to/gem-01': true,
+          'path/to/gem-02': true,
+          'path/to/gem-03': true
         }
       }
     },
-    myTarget01: {
+    'my-target-01': {
       options: {
         arguments: {
           require: {
-            'path/to/lib1': false
+            'path/to/gem-02': false
           }
         }
       }
@@ -72,7 +183,101 @@ grunt.initConfig({
 ```
 
 
-### Examples
+```bash
+compass-compile --require 'path/to/gem-01' --require 'path/to/gem-03'
+```
+
+#### sourceMap
+Type: `Boolean`
+Default value: `null`
+
+#### debugInfo
+Type: `Boolean`
+Default value: `null`
+
+#### load
+Type: `String`
+Default value: `''`
+
+#### loadAll
+Type: `String`
+Default value: `''`
+
+#### importPath
+Type: `String`
+Default value: `''`
+
+#### quiet
+Type: `Boolean`
+Default value: `false`
+
+#### trace
+Type: `Boolean`
+Default value: `false`
+
+#### boring
+Type: `Boolean`
+Default value: `false`
+
+#### config
+Type: `String`
+Default value: `''`
+
+#### app
+Type: `String`
+Default value: `''`
+
+#### appDir
+Type: `String`
+Default value: `''`
+
+#### sassDir
+Type: `String`
+Default value: `''`
+
+#### cssDir
+Type: `String`
+Default value: `''`
+
+#### imagesDir
+Type: `String`
+Default value: `''`
+
+#### javascriptDir
+Type: `String`
+Default value: `''`
+
+#### fontsDir
+Type: `String`
+Default value: `''`
+
+#### environment
+Type: `String`
+Default value: `''`
+
+#### outputStyle
+Type: `String`
+Default value: `''`
+
+#### relativeAssets
+Type: `Boolean`
+Default value: `false`
+
+#### noLineComments
+Type: `Boolean`
+Default value: `false`
+
+#### httpPath
+Type: `String`
+Default value: `''`
+
+#### generatedImagesPath
+Type: `String`
+Default value: `''`
+
+
+## Examples
+
 
 ```javascript
 
@@ -89,17 +294,23 @@ require('jit-grunt')(
 grunt.initConfig({
   'compass-clean': {
     'my-custom-name': {
-      cwd: './path/to/dir'
+      files: {
+        src: ['./path/to/dir/config.rb']
+      }
     }
   },
   'compass-compile': {
     'my-custom-name': {
-      cwd: './path/to/dir'
+      files: {
+        src: ['./path/to/dir/config.rb']
+      }
     }
   },
   'compass-validate': {
     'my-custom-name': {
-      cwd: './path/to/dir'
+      files: {
+        src: ['./path/to/dir/config.rb']
+      }
     }
   }
 });
@@ -112,13 +323,24 @@ grunt.registerTask('scss-compile', [
 ```
 
 
+## Author
+
+**Andor Dávid**
+* [GitHub](https://github.com/Sweetchuck)
+* [Twitter](http://twitter.com/andor_david)
+* [LinkedIn](https://hu.linkedin.com/pub/andor-dávid/5b/484/b83)
+
+
 ## Release History
 
-_(Nothing yet)_
+**DATE**       **VERSION**   **CHANGES** 
+* 2015-05-18   v0.0.2        Flag support
+
+## License
+
+Copyright (c) 2015 Andor Dávid, contributors.  
 
 
----
+***
 
-Task submitted by []()
-
-*This file was generated on Thu May 21 2015 00:34:38.*
+_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on May 23, 2015._

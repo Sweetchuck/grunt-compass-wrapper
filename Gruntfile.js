@@ -22,6 +22,22 @@ module.exports = function (grunt) {
       }
     },
 
+    verb: {
+      options: {
+        data: [
+          'docs/data/*.yml'
+        ]
+      },
+      readme: {
+        files: [
+          {
+            src: ['docs/README.md'],
+            dest: 'README.md'
+          }
+        ]
+      }
+    },
+
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
@@ -37,6 +53,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-internal');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-verb');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
@@ -46,5 +63,5 @@ module.exports = function (grunt) {
   ]);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['test', 'build-contrib']);
+  grunt.registerTask('default', ['test']);
 };
