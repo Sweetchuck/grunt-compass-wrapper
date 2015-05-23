@@ -1,6 +1,3 @@
-
-# Examples
-
 ```javascript
 
 require('jit-grunt')(
@@ -16,17 +13,23 @@ require('jit-grunt')(
 grunt.initConfig({
   'compass-clean': {
     'my-custom-name': {
-      cwd: './path/to/dir'
+      files: {
+        src: ['./path/to/dir/config.rb']
+      }
     }
   },
   'compass-compile': {
     'my-custom-name': {
-      cwd: './path/to/dir'
+      files: {
+        src: ['./path/to/dir/config.rb']
+      }
     }
   },
   'compass-validate': {
     'my-custom-name': {
-      cwd: './path/to/dir'
+      files: {
+        src: ['./path/to/dir/config.rb']
+      }
     }
   }
 });
