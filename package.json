@@ -1,7 +1,7 @@
 {
   "name": "grunt-compass-wrapper",
   "description": "Wrapper around the `compass` CLI tool.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "GPL-2.0",
   "homepage": "https://github.com/Sweetchuck",
   "username": "Sweetchuck",
