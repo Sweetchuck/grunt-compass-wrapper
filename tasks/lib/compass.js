@@ -105,6 +105,7 @@ exports.init = function (grunt) {
   'use strict';
 
   var binVersionCheck = require('bin-version-check');
+  var escapeShellArg = require('any-shell-escape');
   var S = require('string');
   var path = require('path');
 
@@ -160,21 +161,6 @@ exports.init = function (grunt) {
     }
   };
 
-  exports.defaultConfig = {
-    clean: {
-      options: {},
-      cwd: '.'
-    },
-    compile: {
-      options: {},
-      cwd: '.'
-    },
-    validate: {
-      options: {},
-      cwd: '.'
-    }
-  };
-
   exports.msgPattern = {
     noMatch: S('There is no match to the following patterns: {{patterns}}'),
     currentDirectory: S('Current working directory is: {{cwd}}'),
@@ -187,8 +173,13 @@ exports.init = function (grunt) {
    * @return {String}
    */
   exports.escapeShellArgument = function (string) {
-    // @todo Escape shell argument.
-    return !string ? "''" : string;
+    string = string.toString();
+
+    if (!string.length) {
+      return "''";
+    }
+
+    return escapeShellArg(string);
   };
 
   /**
@@ -278,7 +269,8 @@ exports.init = function (grunt) {
           continue;
         }
 
-        s = schema.hasOwnProperty(name) ? schema[name] : {type: typeof args[name]};
+        s = schema.hasOwnProperty(name) ? schema[name] : {};
+        s.type = s.type || (typeof args[name]);
         s.cliName = s.cliName || S(name).dasherize().s;
         if (s.type === 'object' && Array.isArray(args[name])) {
           s.type = 'array';
@@ -301,6 +293,7 @@ exports.init = function (grunt) {
             break;
 
           case 'string':
+          case 'number':
             cliArgs.push('--' + s.cliName);
             cliArgs.push(exports.escapeShellArgument(args[name]));
             break;
@@ -423,7 +416,7 @@ exports.init = function (grunt) {
 
   /**
    * @param {String} action
-   * @param {CompassCleanOptions} options
+   * @param {CompassDefaultOptions} options
    * @param {Array} fileDefinitions
    */
   exports.exec = function (action, options, fileDefinitions) {
