@@ -2,14 +2,24 @@
 toc:
   maxDepth: 4
 ---
-# {%= name %} {%= badge("travis") %}
+
+# {%= name %}
+
 <!-- toc -->
+
+## Build status
+
+[![Build Status: Linux](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper.svg?branch=master)](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper)
+
 
 ## Install
 
-{%= include('install-npm') %}
+{%= docs('install-npm') %}
 
 ## Tasks
+
+Every options is the same for for each tasks.
+
 
 ### compass-clean
 
@@ -19,27 +29,37 @@ Remove generated files and the sass cache.
 
 **Supported arguments**
 
-* require
-* load
-* loadAll
-* importPath
-* quiet
-* trace
-* boring
-* config
-* app
-* appDir
-* sassDir
-* cssDir
-* imagesDir
-* javascriptDir
-* fontsDir
-* environment
-* outputStyle
-* relativeAssets
-* noLineComments
-* httpPath
-* generatedImagesPath
+* [require](#require)
+* [load](#load)
+* [loadAll](#loadall)
+* [importPath](#importpath)
+* [quiet](#quiet)
+* [trace](#trace)
+* [boring](#boring)
+* [config](#config)
+* [app](#app)
+* [appDir](#appdir)
+* [sassDir](#sassdir)
+* [cssDir](#cssdir)
+* [imagesDir](#imagesdir)
+* [javascriptDir](#javascriptdir)
+* [fontsDir](#fontsdir)
+* [environment](#environment)
+* [outputStyle](#outputstyle)
+* [relativeAssets](#relativeassets)
+* [noLineComments](#nolinecomments)
+* [httpPath](#httppath)
+* [generatedImagesPath](#generatedimagespath)
+
+With the default options the
+```bash
+grunt compass-clean
+```
+
+is equivalent to
+```bash
+bundle exec compass clean
+```
 
 
 ### compass-compile
@@ -50,29 +70,40 @@ Compile Sass stylesheets to CSS.
 
 **Supported arguments**
 
-* sourceMap
-* debugInfo
-* require
-* load
-* loadAll
-* importPath
-* quiet
-* trace
-* boring
-* config
-* app
-* appDir
-* sassDir
-* cssDir
-* imagesDir
-* javascriptDir
-* fontsDir
-* environment
-* outputStyle
-* relativeAssets
-* noLineComments
-* httpPath
-* generatedImagesPath
+* [sourceMap](#sourcemap)
+* [debugInfo](#debuginfo)
+* [require](#require)
+* [load](#load)
+* [loadAll](#loadall)
+* [importPath](#importpath)
+* [quiet](#quiet)
+* [trace](#trace)
+* [boring](#boring)
+* [config](#config)
+* [app](#app)
+* [appDir](#appdir)
+* [sassDir](#sassdir)
+* [cssDir](#cssdir)
+* [imagesDir](#imagesdir)
+* [javascriptDir](#javascriptdir)
+* [fontsDir](#fontsdir)
+* [environment](#environment)
+* [outputStyle](#outputstyle)
+* [relativeAssets](#relativeassets)
+* [noLineComments](#nolinecomments)
+* [httpPath](#httppath)
+* [generatedImagesPath](#generatedimagespath)
+
+With the default options the
+```bash
+grunt compass-compile
+```
+
+is equivalent to
+```bash
+bundle exec compass complie
+```
+
 
 ### compass-validate
 
@@ -82,27 +113,37 @@ Validate your generated css.
 
 **Supported arguments**
 
-* require
-* load
-* loadAll
-* importPath
-* quiet
-* trace
-* boring
-* config
-* app
-* appDir
-* sassDir
-* cssDir
-* imagesDir
-* javascriptDir
-* fontsDir
-* environment
-* outputStyle
-* relativeAssets
-* noLineComments
-* httpPath
-* generatedImagesPath
+* [require](#require)
+* [load](#load)
+* [loadAll](#loadall)
+* [importPath](#importpath)
+* [quiet](#quiet)
+* [trace](#trace)
+* [boring](#boring)
+* [config](#config)
+* [app](#app)
+* [appDir](#appdir)
+* [sassDir](#sassdir)
+* [cssDir](#cssdir)
+* [imagesDir](#imagesdir)
+* [javascriptDir](#javascriptdir)
+* [fontsDir](#fontsdir)
+* [environment](#environment)
+* [outputStyle](#outputstyle)
+* [relativeAssets](#relativeassets)
+* [noLineComments](#nolinecomments)
+* [httpPath](#httppath)
+* [generatedImagesPath](#generatedimagespath)
+
+With the default options the
+```bash
+grunt compass-validate
+```
+
+is equivalent to
+```bash
+bundle exec compass validate
+```
 
 ## Options
 
@@ -111,6 +152,10 @@ Validate your generated css.
 ## Arguments
 
 {%= docs('arguments') %}
+
+## Flags
+
+{%= docs('flags') %}
 
 ## Examples
 

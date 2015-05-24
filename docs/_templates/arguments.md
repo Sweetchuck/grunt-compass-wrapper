@@ -1,8 +1,10 @@
 All argument is same as the CLI counterpart.
 You can check them with the `$ compass {clean|compile|validate} --help` command.
 
-### require
+## require
+
 Type: `Object`
+
 Default value: `{}`
 
 Key-value pairs where the key is the desired library and the value is `false` or
@@ -38,90 +40,156 @@ grunt.initConfig({
 compass-compile --require 'path/to/gem-01' --require 'path/to/gem-03'
 ```
 
-### sourceMap
+
+## sourceMap
+
 Type: `Boolean`
+
 Default value: `null`
 
-### debugInfo
+
+## debugInfo
+
 Type: `Boolean`
+
 Default value: `null`
 
-### load
+
+## load
+
 Type: `String`
+
 Default value: `''`
 
-### loadAll
+
+## loadAll
+
 Type: `String`
+
 Default value: `''`
 
-### importPath
+
+## importPath
+
 Type: `String`
+
 Default value: `''`
 
-### quiet
+
+## quiet
+
 Type: `Boolean`
+
 Default value: `false`
 
-### trace
+
+## trace
+
 Type: `Boolean`
+
 Default value: `false`
 
-### boring
+
+## boring
+
 Type: `Boolean`
+
 Default value: `false`
 
-### config
+
+## config
+
 Type: `String`
+
 Default value: `''`
 
-### app
+
+## app
+
 Type: `String`
+
 Default value: `''`
 
-### appDir
+
+## appDir
+
 Type: `String`
+
 Default value: `''`
 
-### sassDir
+
+## sassDir
+
 Type: `String`
+
 Default value: `''`
 
-### cssDir
+
+## cssDir
+
 Type: `String`
+
 Default value: `''`
 
-### imagesDir
+
+## imagesDir
+
 Type: `String`
+
 Default value: `''`
 
-### javascriptDir
+
+## javascriptDir
+
 Type: `String`
+
 Default value: `''`
 
-### fontsDir
+
+## fontsDir
+
 Type: `String`
+
 Default value: `''`
 
-### environment
+
+## environment
+
 Type: `String`
+
 Default value: `''`
 
-### outputStyle
+
+## outputStyle
+
 Type: `String`
+
 Default value: `''`
 
-### relativeAssets
+
+## relativeAssets
+
 Type: `Boolean`
+
 Default value: `false`
 
-### noLineComments
+
+## noLineComments
+
 Type: `Boolean`
+
 Default value: `false`
 
-### httpPath
+
+## httpPath
+
 Type: `String`
+
 Default value: `''`
 
-### generatedImagesPath
+
+## generatedImagesPath
+
 Type: `String`
+
 Default value: `''`
