@@ -1,0 +1,16 @@
+
+releaseHistory:
+  v0.0.4:
+    date: '2015-05-24'
+    changes:
+      - 'Improved documentation'
+
+  v0.0.3:
+    date: '2015-05-22'
+    changes:
+      - 'Nobody knows'
+
+  v0.0.2:
+    date: '2015-05-18'
+    changes:
+      - 'Flag support'

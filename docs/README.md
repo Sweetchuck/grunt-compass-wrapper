@@ -167,7 +167,7 @@ bundle exec compass validate
 
 ## Release History
 
-{%= changelog('docs/data/changelog.yml') %}
+{%= docs('release-history', {releaseHistory: arguments[0].releaseHistory}) %}
 
 ## License
 

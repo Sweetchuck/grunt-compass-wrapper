@@ -554,8 +554,8 @@ Override the value of [noLineComments](#no-line-comments) argument with `true`.
 ## Examples
 
 ### Example - Basic
-```javascript
 
+```javascript
 require('jit-grunt')(
   grunt,
   // Mapping.
@@ -706,8 +706,14 @@ bundle exec compass compile --environment 'production' --output-style 'compresse
 
 ## Release History
 
-**DATE**       **VERSION**   **CHANGES** 
-* 2015-05-18   v0.0.2        Flag support
+* **v0.0.4 2015-05-24**
+  * Improved documentation
+* **v0.0.3 2015-05-22**
+  * Nobody knows
+* **v0.0.2 2015-05-18**
+  * Flag support
+
+
 
 ## License
 
