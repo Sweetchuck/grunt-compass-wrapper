@@ -705,6 +705,8 @@ bundle exec compass compile --environment 'production' --output-style 'compresse
 
 ## Release History
 
+* **v0.0.5** - 2015-05-24
+  * Rename a "options.arguments" to "options.args".
 * **v0.0.4** - 2015-05-24
   * Improved documentation
 * **v0.0.3** - 2015-05-22
