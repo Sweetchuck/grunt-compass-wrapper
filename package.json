@@ -13,6 +13,9 @@
     "linkedin": "andor-dávid/5b/484/b83"
   },
   "repository": {
+    "type": "git",
+    "owner": "Sweetchuck",
+    "name": "grunt-compass-wrapper",
     "url": "https://github.com/Sweetchuck/grunt-compass-wrapper.git"
   },
   "engines": {
