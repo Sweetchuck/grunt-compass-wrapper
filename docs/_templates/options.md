@@ -22,7 +22,7 @@ Type: `String`
 
 Default value: `'compass'`
 
-## arguments
+## args
 
 Type: `Object`
 
@@ -35,7 +35,7 @@ grunt.initConfig({
     options: {
       rubyExecutable: '/home/foo/.rvm/rubies/ruby-2.1.3/bin/ruby',
       bundleExecutable: '/home/foo/.rvm/gems/ruby-2.1.3/bin/bundle',
-      arguments: {
+      args: {
         boring: true
       }
     },
@@ -48,7 +48,7 @@ grunt.initConfig({
       options: {
         rubyExecutable: '',
         bundleExecutable: '',
-        arguments: {
+        args: {
           boring: false,
           environment: 'production'
         }

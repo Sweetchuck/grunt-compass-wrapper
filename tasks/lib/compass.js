@@ -3,98 +3,7 @@
  * Documentation missing.
  */
 
-/**
- * @typedef {Object} CompassDefaultArguments
- * @property {String[]} require
- * @property {String} load
- * @property {String} loadAll
- * @property {String} importPath
- * @property {Boolean} quiet
- * @property {Boolean} trace
- * @property {Boolean} boring
- * @property {String} config
- * @property {String} app
- * @property {String} appDir
- * @property {String} sassDir
- * @property {String} cssDir
- * @property {String} imagesDir
- * @property {String} javascriptDir
- * @property {String} fontsDir
- * @property {String} environment
- * @property {String} outputStyle
- * @property {Boolean} relativeAssets
- * @property {Boolean} noLineComments
- * @property {String} httpPath
- * @property {String} generatedImagesPath
- */
-
-/**
- * @typedef {Object} CompassDefaultOptions
- * @property {CompassDefaultArguments} arguments
- * @property {String} rubyExecutable
- * @property {String} bundleExecutable
- * @property {Boolean} bundleExec
- * @property {String} compassExecutable
- */
-
-/**
- * @typedef {Object} CompassDefaultConfig
- * @property {CompassDefaultOptions} options
- * @property {String} cwd
- */
-
-/**
- * @typedef {CompassDefaultArguments} CompassCleanArguments
- */
-
-/**
- * @typedef {CompassDefaultOptions} CompassCleanOptions
- * @property {CompassCleanArguments} arguments
- */
-
-/**
- * @typedef {CompassDefaultConfig} CompassCleanConfig
- * @property {CompassCleanOptions} options
- */
-
-/**
- * @typedef {CompassDefaultArguments} CompassCompileArguments
- * @property {Boolean} sourceMap
- *   Allowed values are:
- *   - null
- *   - true
- *   - false
- * @property {Boolean} time
- * @property {Boolean} debugInfo
- *   Allowed values are:
- *   - null
- *   - true
- *   - false
- */
-
-/**
- * @typedef {CompassDefaultOptions} CompassCompileOptions
- * @property {CompassCompileArguments} arguments
- */
-
-/**
- * @typedef {CompassDefaultConfig} CompassCompileConfig
- * @property {CompassCompileOptions} options
- */
-
-/**
- * @typedef {CompassDefaultArguments} CompassValidateArguments
- */
-
-/**
- * @typedef {CompassDefaultOptions} CompassValidateOptions
- * @property {CompassValidateArguments} arguments
- */
-
-/**
- * @typedef {CompassDefaultConfig} CompassValidateConfig
- * @property {CompassValidateOptions} options
- */
+/* global process: true */
 
 /**
  * @param grunt
@@ -113,7 +22,7 @@ exports.init = function (grunt) {
 
   exports.minimumCompassVersion = '0.12.2';
 
-  exports.argumentsSchema = {
+  exports.argsSchema = {
     clean: {},
     compile: {
       sourceMap: {type: 'tri-state', cliName: 'sourcemap'},
@@ -139,21 +48,21 @@ exports.init = function (grunt) {
 
   exports.defaultOptions = {
     clean: {
-      arguments: {},
+      args: {},
       rubyExecutable: null,
       bundleExecutable: 'bundle',
       bundleExec: true,
       compassExecutable: 'compass'
     },
     compile: {
-      arguments: {},
+      args: {},
       rubyExecutable: null,
       bundleExecutable: 'bundle',
       bundleExec: true,
       compassExecutable: 'compass'
     },
     validate: {
-      arguments: {},
+      args: {},
       rubyExecutable: null,
       bundleExecutable: 'bundle',
       bundleExec: true,
@@ -197,7 +106,7 @@ exports.init = function (grunt) {
     var flagName;
     for (flagName in flagsSchema) {
       if (flagsSchema.hasOwnProperty(flagName) && flags.hasOwnProperty(flagName)) {
-        options['arguments'][flagsSchema[flagName].argument] = flagsSchema[flagName].value;
+        options.args[flagsSchema[flagName].argument] = flagsSchema[flagName].value;
       }
     }
 
@@ -251,12 +160,12 @@ exports.init = function (grunt) {
   };
 
   /**
-   * @param {CompassDefaultArguments} args
+   * @param {CompassDefaultArgs} args
    * @param {Object} schema
    *
    * @return {String[]}
    */
-  exports.buildArguments = function (args, schema) {
+  exports.buildArgs = function (args, schema) {
     var cliArgs = [];
     var name;
     var s;
@@ -385,7 +294,7 @@ exports.init = function (grunt) {
     }
 
     command.args.push(action);
-    command.args = command.args.concat(exports.buildArguments(options.arguments, exports.argumentsSchema[action]));
+    command.args = command.args.concat(exports.buildArgs(options.args, exports.argsSchema[action]));
 
     return command;
   };

@@ -1,5 +1,10 @@
 
 releaseHistory:
+  v0.0.5:
+    date: '2015-05-24'
+    changes:
+      - 'Rename a "options.arguments" to "options.args".'
+
   v0.0.4:
     date: '2015-05-24'
     changes:

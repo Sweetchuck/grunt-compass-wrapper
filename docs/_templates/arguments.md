@@ -14,7 +14,7 @@ Key-value pairs where the key is the desired library and the value is `false` or
 grunt.initConfig({
   'compass-compile': {
     options: {
-      arguments: {
+      args: {
         require: {
           'path/to/gem-01': true,
           'path/to/gem-02': true,
@@ -24,7 +24,7 @@ grunt.initConfig({
     },
     'my-target-01': {
       options: {
-        arguments: {
+        args: {
           require: {
             'path/to/gem-02': false
           }

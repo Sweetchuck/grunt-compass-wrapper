@@ -16,8 +16,8 @@
   * [bundleExecutable](#bundleexecutable)
   * [bundleExec](#bundleexec)
   * [compassExecutable](#compassexecutable)
-  * [arguments](#arguments)
-* [Arguments](#arguments)
+  * [args](#args)
+* [Args](#args)
   * [require](#require)
   * [sourceMap](#sourcemap)
   * [debugInfo](#debuginfo)
@@ -42,23 +42,23 @@
   * [httpPath](#httppath)
   * [generatedImagesPath](#generatedimagespath)
 * [Flags](#flags)
-  * [Flag - quiet](#flag-quiet)
-  * [Flag - trace](#flag-trace)
-  * [Flag - force](#flag-force)
-  * [Flag - boring](#flag-boring)
-  * [Flag - development](#flag-development)
-  * [Flag - production](#flag-production)
-  * [Flag - nested](#flag-nested)
-  * [Flag - expanded](#flag-expanded)
-  * [Flag - compact](#flag-compact)
-  * [Flag - compressed](#flag-compressed)
-  * [Flag - relative-assets](#flag-relative-assets)
-  * [Flag - no-line-comments](#flag-no-line-comments)
+  * [Flag quiet](#flag-quiet)
+  * [Flag trace](#flag-trace)
+  * [Flag force](#flag-force)
+  * [Flag boring](#flag-boring)
+  * [Flag development](#flag-development)
+  * [Flag production](#flag-production)
+  * [Flag nested](#flag-nested)
+  * [Flag expanded](#flag-expanded)
+  * [Flag compact](#flag-compact)
+  * [Flag compressed](#flag-compressed)
+  * [Flag relative-assets](#flag-relative-assets)
+  * [Flag no-line-comments](#flag-no-line-comments)
 * [Examples](#examples)
-  * [Example - Basic](#example-basic)
-  * [Example - Without bundle](#example-without-bundle)
-  * [Example - Arguments](#example-arguments)
-  * [Example - Arguments and flags](#example-arguments-and-flags)
+  * [Basic](#basic)
+  * [Without bundle](#without-bundle)
+  * [Custom args](#custom-args)
+  * [Args and flags](#args-and-flags)
 * [Author](#author)
 * [Release History](#release-history)
 * [License](#license)
@@ -69,7 +69,6 @@
 ## Build status
 
 [![Build Status: Linux](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper.svg?branch=master)](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper)
-
 
 ## Install
 
@@ -235,7 +234,7 @@ Type: `String`
 
 Default value: `'compass'`
 
-### arguments
+### args
 
 Type: `Object`
 
@@ -248,7 +247,7 @@ grunt.initConfig({
     options: {
       rubyExecutable: '/home/foo/.rvm/rubies/ruby-2.1.3/bin/ruby',
       bundleExecutable: '/home/foo/.rvm/gems/ruby-2.1.3/bin/bundle',
-      arguments: {
+      args: {
         boring: true
       }
     },
@@ -261,7 +260,7 @@ grunt.initConfig({
       options: {
         rubyExecutable: '',
         bundleExecutable: '',
-        arguments: {
+        args: {
           boring: false,
           environment: 'production'
         }
@@ -287,7 +286,7 @@ bundle exec compass compile --environment production
 ```
 
 
-## Arguments
+## Args
 
 All argument is same as the CLI counterpart.
 You can check them with the `$ compass {clean|compile|validate} --help` command.
@@ -305,7 +304,7 @@ Key-value pairs where the key is the desired library and the value is `false` or
 grunt.initConfig({
   'compass-compile': {
     options: {
-      arguments: {
+      args: {
         require: {
           'path/to/gem-01': true,
           'path/to/gem-02': true,
@@ -315,7 +314,7 @@ grunt.initConfig({
     },
     'my-target-01': {
       options: {
-        arguments: {
+        args: {
           require: {
             'path/to/gem-02': false
           }
@@ -491,69 +490,69 @@ Default value: `''`
 You can modify the arguments by [Flags](http://gruntjs.com/api/inside-tasks#this.flags)
 
 
-### Flag - quiet
+### Flag quiet
 
 Override the value of [quiet](#quiet) argument with `true`.
 
 
-### Flag - trace
+### Flag trace
 
 Override the value of [trace](#trace) argument with `true`.
 
 
-### Flag - force
+### Flag force
 
 Override the value of [force](#force) argument with `true`.
 
 
-### Flag - boring
+### Flag boring
 
 Override the value of [boring](#boring) argument with `true`.
 
 
-### Flag - development
+### Flag development
 
 Override the value of [environment](#environment) argument with `'development'`.
 
 
-### Flag - production
+### Flag production
 
 Override the value of [environment](#environment) argument with `'production'`.
 
 
-### Flag - nested
+### Flag nested
 
 Override the value of [outputStyle](#outputstyle) argument with `'nested'`.
 
 
-### Flag - expanded
+### Flag expanded
 
 Override the value of [outputStyle](#outputstyle) argument with `'expanded'`.
 
 
-### Flag - compact
+### Flag compact
 
 Override the value of [outputStyle](#outputstyle) argument with `'compact'`.
 
 
-### Flag - compressed
+### Flag compressed
 
 Override the value of [outputStyle](#outputstyle) argument with `'compressed'`.
 
 
-### Flag - relative-assets
+### Flag relative-assets
 
 Override the value of [relativeAssets](#relative-assets) argument with `true`.
 
 
-### Flag - no-line-comments
+### Flag no-line-comments
 
 Override the value of [noLineComments](#no-line-comments) argument with `true`.
 
 
 ## Examples
 
-### Example - Basic
+### Basic
 
 ```javascript
 require('jit-grunt')(
@@ -606,7 +605,7 @@ bundle exec compass validate
 ```
 
 
-### Example - Without bundle
+### Without bundle
 
 ```javascript
 grunt.initConfig({
@@ -630,13 +629,13 @@ compass compile
 ```
 
 
-### Example - Arguments
+### Custom args
 
 ```javascript
 grunt.initConfig({
   'compass-compile': {
     options: {
-      arguments: {
+      args: {
         environment: 'development',
         outputStyle: 'nested'
       }
@@ -657,13 +656,13 @@ bundle exec compass compile --environment 'development' --output-style 'nested'
 ```
 
 
-### Example - Arguments and flags
+### Args and flags
 
 ```javascript
 grunt.initConfig({
   'compass-compile': {
     options: {
-      arguments: {
+      args: {
         environment: 'development',
         outputStyle: 'nested'
       }
@@ -722,4 +721,4 @@ Copyright (c) 2015 Andor Dávid, contributors.
 
 ***
 
-_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on May 24, 2015._
+_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on May 25, 2015._

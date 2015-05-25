@@ -148,7 +148,7 @@ bundle exec compass validate
 
 {%= docs('options') %}
 
-## Arguments
+## Args
 
 {%= docs('arguments') %}
 

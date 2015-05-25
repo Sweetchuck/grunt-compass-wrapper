@@ -1,4 +1,4 @@
-## Example - Basic
+## Basic
 
 ```javascript
 require('jit-grunt')(
@@ -51,7 +51,7 @@ bundle exec compass validate
 ```
 
 
-## Example - Without bundle
+## Without bundle
 
 ```javascript
 grunt.initConfig({
@@ -75,13 +75,13 @@ compass compile
 ```
 
 
-## Example - Arguments
+## Custom args
 
 ```javascript
 grunt.initConfig({
   'compass-compile': {
     options: {
-      arguments: {
+      args: {
         environment: 'development',
         outputStyle: 'nested'
       }
@@ -102,13 +102,13 @@ bundle exec compass compile --environment 'development' --output-style 'nested'
 ```
 
 
-## Example - Arguments and flags
+## Args and flags
 
 ```javascript
 grunt.initConfig({
   'compass-compile': {
     options: {
-      arguments: {
+      args: {
         environment: 'development',
         outputStyle: 'nested'
       }

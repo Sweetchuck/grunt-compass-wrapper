@@ -17,24 +17,24 @@ exports.compass = {
     var expected;
 
     options = {
-      arguments: {}
+      args: {}
     };
     expected = {
-      arguments: {}
+      args: {}
     };
     compass.overrideOptionsByFlags(
       options,
       {}
     );
-    test.deepEqual(options, expected, '@todo');
+    test.deepEqual(options, expected, '@todo 1');
 
     options = {
-      arguments: {
+      args: {
         boring: false
       }
     };
     expected = {
-      arguments: {
+      args: {
         boring: false
       }
     };
@@ -42,15 +42,15 @@ exports.compass = {
       options,
       {}
     );
-    test.deepEqual(options, expected, '@todo');
+    test.deepEqual(options, expected, '@todo 2');
 
     options = {
-      arguments: {
+      args: {
         boring: false
       }
     };
     expected = {
-      arguments: {
+      args: {
         boring: true
       }
     };
@@ -60,7 +60,7 @@ exports.compass = {
         boring: true
       }
     );
-    test.deepEqual(options, expected, '@todo');
+    test.deepEqual(options, expected, '@todo 3');
 
     test.done();
   },
@@ -145,7 +145,7 @@ exports.compass = {
     test.done();
   },
 
-  buildArguments: function (test) {
+  buildArgs: function (test) {
     test.expect(1);
 
     var schema = {
@@ -197,9 +197,9 @@ exports.compass = {
       'foo-true'
     ];
 
-    var cliArgsActual = compass.buildArguments(args, schema);
+    var cliArgsActual = compass.buildArgs(args, schema);
 
-    test.deepEqual(cliArgsActual, cliArgsExpected, 'compass.buildArguments works as expected.');
+    test.deepEqual(cliArgsActual, cliArgsExpected, 'compass.buildArgs() works as expected.');
 
     test.done();
   },
@@ -248,7 +248,7 @@ exports.compass = {
     var action = 'clean';
 
     var options = {
-      arguments: {},
+      args: {},
       rubyExecutable: null,
       bundleExecutable: 'bundle',
       bundleExec: true,
@@ -270,7 +270,7 @@ exports.compass = {
     );
 
     options = {
-      arguments: {},
+      args: {},
       rubyExecutable: null,
       bundleExecutable: 'bundle',
       bundleExec: false,
@@ -290,7 +290,7 @@ exports.compass = {
     );
 
     options = {
-      arguments: {},
+      args: {},
       rubyExecutable: '/usr/bin/ruby',
       bundleExecutable: '/usr/bin/bundle',
       bundleExec: true,
@@ -310,7 +310,7 @@ exports.compass = {
     );
 
     options = {
-      arguments: {},
+      args: {},
       rubyExecutable: '/usr/bin/ruby',
       bundleExecutable: '/usr/bin/bundle',
       bundleExec: false,
