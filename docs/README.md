@@ -9,8 +9,7 @@ toc:
 
 ## Build status
 
-[![Build Status: Linux](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper.svg?branch=master)](https://travis-ci.org/Sweetchuck/grunt-compass-wrapper)
-
+[![Build Status: Linux](https://travis-ci.org/{%= repository.owner %}/{%= name %}.svg?branch=master)](https://travis-ci.org/{%= repository.owner %}/{%= name %})
 
 ## Install
 
