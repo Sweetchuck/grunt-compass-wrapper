@@ -11,36 +11,36 @@
   * [compass-clean](#compass-clean)
   * [compass-compile](#compass-compile)
   * [compass-validate](#compass-validate)
-* [Options](#options)
-  * [rubyExecutable](#rubyexecutable)
-  * [bundleExecutable](#bundleexecutable)
-  * [bundleExec](#bundleexec)
-  * [compassExecutable](#compassexecutable)
-  * [args](#args)
-* [Args](#args)
-  * [require](#require)
-  * [sourceMap](#sourcemap)
-  * [debugInfo](#debuginfo)
-  * [load](#load)
-  * [loadAll](#loadall)
-  * [importPath](#importpath)
-  * [quiet](#quiet)
-  * [trace](#trace)
-  * [boring](#boring)
-  * [config](#config)
-  * [app](#app)
-  * [appDir](#appdir)
-  * [sassDir](#sassdir)
-  * [cssDir](#cssdir)
-  * [imagesDir](#imagesdir)
-  * [javascriptDir](#javascriptdir)
-  * [fontsDir](#fontsdir)
-  * [environment](#environment)
-  * [outputStyle](#outputstyle)
-  * [relativeAssets](#relativeassets)
-  * [noLineComments](#nolinecomments)
-  * [httpPath](#httppath)
-  * [generatedImagesPath](#generatedimagespath)
+* [Configuration](#configuration)
+  * [options.rubyExecutable](#optionsrubyexecutable)
+  * [options.bundleExecutable](#optionsbundleexecutable)
+  * [options.bundleExec](#optionsbundleexec)
+  * [options.compassExecutable](#optionscompassexecutable)
+  * [options.args](#optionsargs)
+  * [options.args.require](#optionsargsrequire)
+  * [options.args.sourceMap](#optionsargssourcemap)
+  * [options.args.debugInfo](#optionsargsdebuginfo)
+  * [options.args.load](#optionsargsload)
+  * [options.args.loadAll](#optionsargsloadall)
+  * [options.args.importPath](#optionsargsimportpath)
+  * [options.args.quiet](#optionsargsquiet)
+  * [options.args.trace](#optionsargstrace)
+  * [options.args.boring](#optionsargsboring)
+  * [options.args.config](#optionsargsconfig)
+  * [options.args.app](#optionsargsapp)
+  * [options.args.appDir](#optionsargsappdir)
+  * [options.args.sassDir](#optionsargssassdir)
+  * [options.args.cssDir](#optionsargscssdir)
+  * [options.args.imagesDir](#optionsargsimagesdir)
+  * [options.args.javascriptDir](#optionsargsjavascriptdir)
+  * [options.args.fontsDir](#optionsargsfontsdir)
+  * [options.args.environment](#optionsargsenvironment)
+  * [options.args.outputStyle](#optionsargsoutputstyle)
+  * [options.args.relativeAssets](#optionsargsrelativeassets)
+  * [options.args.noLineComments](#optionsargsnolinecomments)
+  * [options.args.httpPath](#optionsargshttppath)
+  * [options.args.generatedImagesPath](#optionsargsgeneratedimagespath)
+  * [files](#files)
 * [Flags](#flags)
   * [Flag quiet](#flag-quiet)
   * [Flag trace](#flag-trace)
@@ -56,6 +56,7 @@
   * [Flag no-line-comments](#flag-no-line-comments)
 * [Examples](#examples)
   * [Basic](#basic)
+  * [Options, args and files](#options-args-and-files)
   * [Without bundle](#without-bundle)
   * [Custom args](#custom-args)
   * [Args and flags](#args-and-flags)
@@ -90,29 +91,35 @@ Wrapper around the `$ compass clean` command.
 
 Remove generated files and the sass cache.
 
-**Supported arguments**
+**Configuration**
 
-* [require](#require)
-* [load](#load)
-* [loadAll](#loadall)
-* [importPath](#importpath)
-* [quiet](#quiet)
-* [trace](#trace)
-* [boring](#boring)
-* [config](#config)
-* [app](#app)
-* [appDir](#appdir)
-* [sassDir](#sassdir)
-* [cssDir](#cssdir)
-* [imagesDir](#imagesdir)
-* [javascriptDir](#javascriptdir)
-* [fontsDir](#fontsdir)
-* [environment](#environment)
-* [outputStyle](#outputstyle)
-* [relativeAssets](#relativeassets)
-* [noLineComments](#nolinecomments)
-* [httpPath](#httppath)
-* [generatedImagesPath](#generatedimagespath)
+* options
+  * [rubyExecutable](#optionsrubyexecutable)
+  * [bundleExecutable](#optionsbundleexecutable)
+  * [bundleExec](#optionsbundleexec)
+  * [compassExecutable](#optionscompassexecutable)
+  * [args](#optionsargs)
+    * [load](#optionsargsload)
+    * [loadAll](#optionsargsloadall)
+    * [importPath](#optionsargsimportpath)
+    * [quiet](#optionsargsquiet)
+    * [trace](#optionsargstrace)
+    * [boring](#optionsargsboring)
+    * [config](#optionsargsconfig)
+    * [app](#optionsargsapp)
+    * [appDir](#optionsargsappdir)
+    * [sassDir](#optionsargssassdir)
+    * [cssDir](#optionsargscssdir)
+    * [imagesDir](#optionsargsimagesdir)
+    * [javascriptDir](#optionsargsjavascriptdir)
+    * [fontsDir](#optionsargsfontsdir)
+    * [environment](#optionsargsenvironment)
+    * [outputStyle](#optionsargsoutputstyle)
+    * [relativeAssets](#optionsargsrelativeassets)
+    * [noLineComments](#optionsargsnolinecomments)
+    * [httpPath](#optionsargshttppath)
+    * [generatedImagesPath](#optionsargsgeneratedimagespath)
+* [files](#files)
 
 With the default options the
 ```bash
@@ -131,31 +138,38 @@ Wrapper around the `$ compass compile` command.
 
 Compile Sass stylesheets to CSS.
 
-**Supported arguments**
+**Configuration**
 
-* [sourceMap](#sourcemap)
-* [debugInfo](#debuginfo)
-* [require](#require)
-* [load](#load)
-* [loadAll](#loadall)
-* [importPath](#importpath)
-* [quiet](#quiet)
-* [trace](#trace)
-* [boring](#boring)
-* [config](#config)
-* [app](#app)
-* [appDir](#appdir)
-* [sassDir](#sassdir)
-* [cssDir](#cssdir)
-* [imagesDir](#imagesdir)
-* [javascriptDir](#javascriptdir)
-* [fontsDir](#fontsdir)
-* [environment](#environment)
-* [outputStyle](#outputstyle)
-* [relativeAssets](#relativeassets)
-* [noLineComments](#nolinecomments)
-* [httpPath](#httppath)
-* [generatedImagesPath](#generatedimagespath)
+* options
+  * [rubyExecutable](#optionsrubyexecutable)
+  * [bundleExecutable](#optionsbundleexecutable)
+  * [bundleExec](#optionsbundleexec)
+  * [compassExecutable](#optionscompassexecutable)
+  * [args](#optionsargs)
+    * [sourceMap](#optionsargsourcemap)
+    * [debugInfo](#optionsargsdebuginfo)
+    * [require](#optionsargsrequire)
+    * [load](#optionsargsload)
+    * [loadAll](#optionsargsloadall)
+    * [importPath](#optionsargsimportpath)
+    * [quiet](#optionsargsquiet)
+    * [trace](#optionsargstrace)
+    * [boring](#optionsargsboring)
+    * [config](#optionsargsconfig)
+    * [app](#optionsargsapp)
+    * [appDir](#optionsargsappdir)
+    * [sassDir](#optionsargssassdir)
+    * [cssDir](#optionsargscssdir)
+    * [imagesDir](#optionsargsimagesdir)
+    * [javascriptDir](#optionsargsjavascriptdir)
+    * [fontsDir](#optionsargsfontsdir)
+    * [environment](#optionsargsenvironment)
+    * [outputStyle](#optionsargsoutputstyle)
+    * [relativeAssets](#optionsargsrelativeassets)
+    * [noLineComments](#optionsargsnolinecomments)
+    * [httpPath](#optionsargshttppath)
+    * [generatedImagesPath](#optionsargsgeneratedimagespath)
+* [files](#files)
 
 With the default options the
 ```bash
@@ -164,7 +178,7 @@ grunt compass-compile
 
 is equivalent to
 ```bash
-bundle exec compass complie
+bundle exec compass compile
 ```
 
 
@@ -176,27 +190,30 @@ Validate your generated css.
 
 **Supported arguments**
 
-* [require](#require)
-* [load](#load)
-* [loadAll](#loadall)
-* [importPath](#importpath)
-* [quiet](#quiet)
-* [trace](#trace)
-* [boring](#boring)
-* [config](#config)
-* [app](#app)
-* [appDir](#appdir)
-* [sassDir](#sassdir)
-* [cssDir](#cssdir)
-* [imagesDir](#imagesdir)
-* [javascriptDir](#javascriptdir)
-* [fontsDir](#fontsdir)
-* [environment](#environment)
-* [outputStyle](#outputstyle)
-* [relativeAssets](#relativeassets)
-* [noLineComments](#nolinecomments)
-* [httpPath](#httppath)
-* [generatedImagesPath](#generatedimagespath)
+* options
+  * [args](#optionsargs)
+    * [require](#optionsargsrequire)
+    * [load](#optionsargsload)
+    * [loadAll](#optionsargsloadall)
+    * [importPath](#optionsargsimportpath)
+    * [quiet](#optionsargsquiet)
+    * [trace](#optionsargstrace)
+    * [boring](#optionsargsboring)
+    * [config](#optionsargsconfig)
+    * [app](#optionsargsapp)
+    * [appDir](#optionsargsappdir)
+    * [sassDir](#optionsargssassdir)
+    * [cssDir](#optionsargscssdir)
+    * [imagesDir](#optionsargsimagesdir)
+    * [javascriptDir](#optionsargsjavascriptdir)
+    * [fontsDir](#optionsargsfontsdir)
+    * [environment](#optionsargsenvironment)
+    * [outputStyle](#optionsargsoutputstyle)
+    * [relativeAssets](#optionsargsrelativeassets)
+    * [noLineComments](#optionsargsnolinecomments)
+    * [httpPath](#optionsargshttppath)
+    * [generatedImagesPath](#optionsargsgeneratedimagespath)
+* [files](#files)
 
 With the default options the
 ```bash
@@ -208,90 +225,47 @@ is equivalent to
 bundle exec compass validate
 ```
 
-## Options
 
-### rubyExecutable
+## Configuration
+
+### options.rubyExecutable
 
 Type: `String`
 
 Default value: `''`
 
-### bundleExecutable
+
+### options.bundleExecutable
 
 Type: `String`
 
 Default value: `'bundle'`
 
-### bundleExec
+
+### options.bundleExec
 
 Type: `Boolean`
 
 Default value: `true`
 
-### compassExecutable
+
+### options.compassExecutable
 
 Type: `String`
 
 Default value: `'compass'`
 
-### args
+
+### options.args
 
 Type: `Object`
 
 Default value: `{}`
 
-**Different options than the default ones**
-```javascript
-grunt.initConfig({
-  'compass-compile': {
-    options: {
-      rubyExecutable: '/home/foo/.rvm/rubies/ruby-2.1.3/bin/ruby',
-      bundleExecutable: '/home/foo/.rvm/gems/ruby-2.1.3/bin/bundle',
-      args: {
-        boring: true
-      }
-    },
-    'my-01': {
-      files: {
-        src: ['**/config.rb']
-      }
-    },
-    'my-02': {
-      options: {
-        rubyExecutable: '',
-        bundleExecutable: '',
-        args: {
-          boring: false,
-          environment: 'production'
-        }
-      },
-      files: {
-        src: ['**/config.rb']
-      }
-    }
-  }
-});
-```
-
-```bash
-grunt compass-compile:my-01
-echo 'is equivalent to'
-/home/foo/.rvm/rubies/ruby-2.1.3/bin/ruby /home/foo/.rvm/gems/ruby-2.1.3/bin/bundle exec compass compile --boring
-```
-
-```bash
-grunt compass-compile:my-02
-echo 'is equivalent to'
-bundle exec compass compile --environment production 
-```
-
-
-## Args
-
 All argument is same as the CLI counterpart.
 You can check them with the `$ compass {clean|compile|validate} --help` command.
 
-### require
+### options.args.require
 
 Type: `Object`
 
@@ -331,158 +305,176 @@ compass-compile --require 'path/to/gem-01' --require 'path/to/gem-03'
 ```
 
 
-### sourceMap
+### options.args.sourceMap
 
 Type: `Boolean`
 
 Default value: `null`
 
 
-### debugInfo
+### options.args.debugInfo
 
 Type: `Boolean`
 
 Default value: `null`
 
 
-### load
+### options.args.load
 
 Type: `String`
 
 Default value: `''`
 
 
-### loadAll
+### options.args.loadAll
 
 Type: `String`
 
 Default value: `''`
 
 
-### importPath
+### options.args.importPath
 
 Type: `String`
 
 Default value: `''`
 
 
-### quiet
+### options.args.quiet
 
 Type: `Boolean`
 
 Default value: `false`
 
 
-### trace
+### options.args.trace
 
 Type: `Boolean`
 
 Default value: `false`
 
 
-### boring
+### options.args.boring
 
 Type: `Boolean`
 
 Default value: `false`
 
 
-### config
+### options.args.config
 
 Type: `String`
 
 Default value: `''`
 
 
-### app
+### options.args.app
 
 Type: `String`
 
 Default value: `''`
 
 
-### appDir
+### options.args.appDir
 
 Type: `String`
 
 Default value: `''`
 
 
-### sassDir
+### options.args.sassDir
 
 Type: `String`
 
 Default value: `''`
 
 
-### cssDir
+### options.args.cssDir
 
 Type: `String`
 
 Default value: `''`
 
 
-### imagesDir
+### options.args.imagesDir
 
 Type: `String`
 
 Default value: `''`
 
 
-### javascriptDir
+### options.args.javascriptDir
 
 Type: `String`
 
 Default value: `''`
 
 
-### fontsDir
+### options.args.fontsDir
 
 Type: `String`
 
 Default value: `''`
 
 
-### environment
+### options.args.environment
 
 Type: `String`
 
 Default value: `''`
 
 
-### outputStyle
+### options.args.outputStyle
 
 Type: `String`
 
 Default value: `''`
 
 
-### relativeAssets
+### options.args.relativeAssets
 
 Type: `Boolean`
 
 Default value: `false`
 
 
-### noLineComments
+### options.args.noLineComments
 
 Type: `Boolean`
 
 Default value: `false`
 
 
-### httpPath
+### options.args.httpPath
 
 Type: `String`
 
 Default value: `''`
 
 
-### generatedImagesPath
+### options.args.generatedImagesPath
 
 Type: `String`
 
 Default value: `''`
+
+
+### files
+
+For more information see the Grunt documentation [Configuring tasks/files](http://gruntjs.com/configuring-tasks#files)
+
+
+```bash
+grunt compass-compile:my-01
+echo 'is equivalent to'
+/home/foo/.rvm/rubies/ruby-2.1.3/bin/ruby /home/foo/.rvm/gems/ruby-2.1.3/bin/bundle exec compass compile --boring
+```
+
+```bash
+grunt compass-compile:my-02
+echo 'is equivalent to'
+bundle exec compass compile --environment production
+```
 
 
 ## Flags
@@ -492,62 +484,62 @@ You can modify the arguments by [Flags](http://gruntjs.com/api/inside-tasks#this
 
 ### Flag quiet
 
-Override the value of [quiet](#quiet) argument with `true`.
+Override the value of [options.args.quiet](#optionsargsquiet) argument with `true`.
 
 
 ### Flag trace
 
-Override the value of [trace](#trace) argument with `true`.
+Override the value of [options.args.trace](#optionsargstrace) argument with `true`.
 
 
 ### Flag force
 
-Override the value of [force](#force) argument with `true`.
-
+Override the value of [options.args.force](#optionsargsforce) argument with `true`.
 
 ### Flag boring
 
-Override the value of [boring](#boring) argument with `true`.
+
+Override the value of [options.args.boring](#optionsargsboring) argument with `true`.
 
 
 ### Flag development
 
-Override the value of [environment](#environment) argument with `'development'`.
+Override the value of [options.args.environment](#optionsargsenvironment) argument with `'development'`.
 
 
 ### Flag production
 
-Override the value of [environment](#environment) argument with `'production'`.
+Override the value of [options.args.environment](#optionsargsenvironment) argument with `'production'`.
 
 
 ### Flag nested
 
-Override the value of [outputStyle](#outputstyle) argument with `'nested'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'nested'`.
 
 
 ### Flag expanded
 
-Override the value of [outputStyle](#outputstyle) argument with `'expanded'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'expanded'`.
 
 
 ### Flag compact
 
-Override the value of [outputStyle](#outputstyle) argument with `'compact'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'compact'`.
 
 
 ### Flag compressed
 
-Override the value of [outputStyle](#outputstyle) argument with `'compressed'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'compressed'`.
 
 
 ### Flag relative-assets
 
-Override the value of [relativeAssets](#relative-assets) argument with `true`.
+Override the value of [options.args.relativeAssets](#optionsargsrelative-assets) argument with `true`.
 
 
 ### Flag no-line-comments
 
-Override the value of [noLineComments](#no-line-comments) argument with `true`.
+Override the value of [options.args.noLineComments](#optionsargsno-line-comments) argument with `true`.
 
 
 ## Examples
@@ -602,6 +594,39 @@ echo 'is equivalent to'
 bundle exec compass clean
 bundle exec compass compile
 bundle exec compass validate
+```
+
+### Options, args and files
+```javascript
+grunt.initConfig({
+  'compass-compile': {
+    options: {
+      rubyExecutable: '/home/foo/.rvm/rubies/ruby-2.1.3/bin/ruby',
+      bundleExecutable: '/home/foo/.rvm/gems/ruby-2.1.3/bin/bundle',
+      args: {
+        boring: true
+      }
+    },
+    'my-01': {
+      files: {
+        src: ['**/config.rb']
+      }
+    },
+    'my-02': {
+      options: {
+        rubyExecutable: '',
+        bundleExecutable: '',
+        args: {
+          boring: false,
+          environment: 'production'
+        }
+      },
+      files: {
+        src: ['**/config.rb']
+      }
+    }
+  }
+});
 ```
 
 
@@ -723,4 +748,4 @@ Copyright (c) 2015 Andor Dávid, contributors.
 
 ***
 
-_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on May 25, 2015._
+_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on May 27, 2015._

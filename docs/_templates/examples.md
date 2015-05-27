@@ -50,6 +50,39 @@ bundle exec compass compile
 bundle exec compass validate
 ```
 
+## Options, args and files
+```javascript
+grunt.initConfig({
+  'compass-compile': {
+    options: {
+      rubyExecutable: '/home/foo/.rvm/rubies/ruby-2.1.3/bin/ruby',
+      bundleExecutable: '/home/foo/.rvm/gems/ruby-2.1.3/bin/bundle',
+      args: {
+        boring: true
+      }
+    },
+    'my-01': {
+      files: {
+        src: ['**/config.rb']
+      }
+    },
+    'my-02': {
+      options: {
+        rubyExecutable: '',
+        bundleExecutable: '',
+        args: {
+          boring: false,
+          environment: 'production'
+        }
+      },
+      files: {
+        src: ['**/config.rb']
+      }
+    }
+  }
+});
+```
+
 
 ## Without bundle
 

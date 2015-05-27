@@ -37,6 +37,7 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-internal": "^0.4.12",
     "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-eslint": "^12.0.0",
     "grunt-verb": "^0.2.4",
     "readme-badges": "^0.3.2"

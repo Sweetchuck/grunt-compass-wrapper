@@ -6,11 +6,8 @@
 'use strict';
 
 module.exports = function (grunt) {
-  var pkg = grunt.file.readJSON('package.json');
-
-  // Project configuration.
-  grunt.initConfig({
-    pkg: pkg,
+  grunt.config.init({
+    pkg: grunt.file.readJSON('package.json'),
 
     eslint: {
       all: {
@@ -28,13 +25,20 @@ module.exports = function (grunt) {
           'docs/data/*.yml'
         ]
       },
-      readme: {
+      docs: {
         files: [
           {
             src: ['docs/README.md'],
             dest: 'README.md'
           }
         ]
+      }
+    },
+
+    watch: {
+      docs: {
+        files: ['docs/**/*.{md,yml}', 'package.json'],
+        tasks: ['verb:docs']
       }
     },
 
@@ -51,17 +55,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-internal');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-verb');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
   grunt.registerTask('test', [
     'eslint',
     'nodeunit'
   ]);
 
-  // By default, lint and run all tests.
   grunt.registerTask('default', ['test']);
 };

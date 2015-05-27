@@ -3,59 +3,59 @@ You can modify the arguments by [Flags](http://gruntjs.com/api/inside-tasks#this
 
 ## Flag quiet
 
-Override the value of [quiet](#quiet) argument with `true`.
+Override the value of [options.args.quiet](#optionsargsquiet) argument with `true`.
 
 
 ## Flag trace
 
-Override the value of [trace](#trace) argument with `true`.
+Override the value of [options.args.trace](#optionsargstrace) argument with `true`.
 
 
 ## Flag force
 
-Override the value of [force](#force) argument with `true`.
-
+Override the value of [options.args.force](#optionsargsforce) argument with `true`.
 
 ## Flag boring
 
-Override the value of [boring](#boring) argument with `true`.
+
+Override the value of [options.args.boring](#optionsargsboring) argument with `true`.
 
 
 ## Flag development
 
-Override the value of [environment](#environment) argument with `'development'`.
+Override the value of [options.args.environment](#optionsargsenvironment) argument with `'development'`.
 
 
 ## Flag production
 
-Override the value of [environment](#environment) argument with `'production'`.
+Override the value of [options.args.environment](#optionsargsenvironment) argument with `'production'`.
 
 
 ## Flag nested
 
-Override the value of [outputStyle](#outputstyle) argument with `'nested'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'nested'`.
 
 
 ## Flag expanded
 
-Override the value of [outputStyle](#outputstyle) argument with `'expanded'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'expanded'`.
 
 
 ## Flag compact
 
-Override the value of [outputStyle](#outputstyle) argument with `'compact'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'compact'`.
 
 
 ## Flag compressed
 
-Override the value of [outputStyle](#outputstyle) argument with `'compressed'`.
+Override the value of [options.args.outputStyle](#optionsargsoutputstyle) argument with `'compressed'`.
 
 
 ## Flag relative-assets
 
-Override the value of [relativeAssets](#relative-assets) argument with `true`.
+Override the value of [options.args.relativeAssets](#optionsargsrelative-assets) argument with `true`.
 
 
 ## Flag no-line-comments
 
-Override the value of [noLineComments](#no-line-comments) argument with `true`.
+Override the value of [options.args.noLineComments](#optionsargsno-line-comments) argument with `true`.
